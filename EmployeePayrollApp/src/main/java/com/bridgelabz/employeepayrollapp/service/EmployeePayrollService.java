@@ -9,36 +9,39 @@ import com.bridgelabz.employeepayrollapp.model.EmployeePayrollData;
 
 @Service
 public class EmployeePayrollService implements IEmployeeServiceInterface{
+	
+	private List<EmployeePayrollData> employeePayrollList = new ArrayList<>();
     @Override
 	public List<EmployeePayrollData> getEmployeePayrollData(){
-		List<EmployeePayrollData> empDataList = new ArrayList<>();
-		empDataList.add(new EmployeePayrollData(1, new EmployeeDTO("Om Tamrakar",100000.00)));
-		return empDataList;
+	
+		return employeePayrollList;
 	}
 
 	@Override
 	public EmployeePayrollData getEmployeePayrollDatabyId(int empId) {
-		EmployeePayrollData empData = null;
-		empData = new EmployeePayrollData(1,new EmployeeDTO("Om Tamrakar",100000.00));
-		return empData;
+		
+		return employeePayrollList.get(empId-1);
 	}
 
 	@Override
 	public EmployeePayrollData createEmployeePayrollData(EmployeeDTO employeeDTO) {
 		EmployeePayrollData empData = null;
-		empData = new EmployeePayrollData(1,employeeDTO);
+		empData = new EmployeePayrollData(employeePayrollList.size()+1,employeeDTO);
+		employeePayrollList.add(empData);
 		return empData;
 	}
 
 	@Override
-	public EmployeePayrollData updateEmployeePayrollData(EmployeeDTO employeeDTO) {
-		EmployeePayrollData empData = null;
-		empData = new EmployeePayrollData(1,employeeDTO);
+	public EmployeePayrollData updateEmployeePayrollData(int empId, EmployeeDTO employeeDTO) {
+		EmployeePayrollData empData = this.getEmployeePayrollDatabyId(empId);
+		empData.setName(employeeDTO.getName());
+		empData.setSalary((double)employeeDTO.getSalary());
+		employeePayrollList.set(empId-1,empData);
 		return empData;
 	}
 
 	@Override
 	public void deleteEmployeePayrollData(int empID) {
-		
+		employeePayrollList.remove(empID-1);
 	}
 }

@@ -19,7 +19,7 @@ import com.bridgelabz.employeepayrollapp.service.IEmployeeServiceInterface;
 public class EmployeePayrollController {
 	
 	@Autowired
-	private EmployeePayrollService employeePayrollService;
+	private IEmployeeServiceInterface employeePayrollService;
  
 	@GetMapping({"", "/", "/get"})
 	public ResponseEntity<ResponseDTO> getAllemployeePayrollData() {
@@ -49,10 +49,10 @@ public class EmployeePayrollController {
 		return new ResponseEntity<ResponseDTO>(resDTO, HttpStatus.OK);
 	}
 	
-	@PutMapping("/update")
-	public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@RequestBody EmployeeDTO employeeDTO){
+	@PutMapping("/update/{empId}")
+	public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("empId") int empId, @RequestBody EmployeeDTO employeeDTO){
 		EmployeePayrollData empData = null;
-		empData = employeePayrollService.updateEmployeePayrollData(employeeDTO);
+		empData = employeePayrollService.updateEmployeePayrollData(empId,employeeDTO);
 		ResponseDTO resDTO = new ResponseDTO("Updated Employee Payroll Data Successfully", empData);
 		return new ResponseEntity<ResponseDTO>(resDTO, HttpStatus.OK);
 	}
