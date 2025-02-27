@@ -12,7 +12,7 @@ import com.bridgelabz.employeepayrollapp.model.EmployeePayrollData;
 import com.bridgelabz.employeepayrollapp.service.EmployeePayrollService;
 import com.bridgelabz.employeepayrollapp.service.IEmployeeServiceInterface;
 
-//UseCase : 4
+//UseCase : 6
 
 @RestController
 @RequestMapping("/employeePayrollService")
@@ -28,7 +28,7 @@ public class EmployeePayrollController {
 		empDataList = employeePayrollService.getEmployeePayrollData();
 		EmployeePayrollData empData = null;
 		ResponseDTO responsedto = new ResponseDTO("GET: call Successful",  empDataList);
-		return  new ResponseEntity(responsedto, HttpStatus.OK);
+		return  new ResponseEntity<ResponseDTO>(responsedto, HttpStatus.OK);
 	}
 	
 	@GetMapping("/get/{empId}")
@@ -36,7 +36,7 @@ public class EmployeePayrollController {
 		EmployeePayrollData empData = null;
 		empData = employeePayrollService.getEmployeePayrollDatabyId(id);
 		ResponseDTO responsedto = new ResponseDTO("GET: call for ID successful",  empData);
-		return  new ResponseEntity(responsedto, HttpStatus.OK);
+		return  new ResponseEntity<ResponseDTO>(responsedto, HttpStatus.OK);
 	}
 	
 
