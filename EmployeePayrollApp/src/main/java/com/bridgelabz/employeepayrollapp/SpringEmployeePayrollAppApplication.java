@@ -11,10 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 public class SpringEmployeePayrollAppApplication {
 
 	public static void main(String[] args) {
-		
-   SpringApplication.run(SpringEmployeePayrollAppApplication.class, args);
-	    log.info("Employee Payroll App Started");
-	    		
+		ApplicationContext context = SpringApplication.run(SpringEmployeePayrollAppApplication.class, args);
+	    log.info("Employee Payroll App Started in {} Environment",
+	    		context.getEnvironment().getProperty("environment"));
 	    
 	}
 
