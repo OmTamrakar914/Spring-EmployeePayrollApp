@@ -17,6 +17,10 @@ public class EmployeePayrollData {
 	private int id;
 	private double salary;
 	
+	public EmployeePayrollData() {
+		
+	}
+	
 	public EmployeePayrollData(int id, EmployeeDTO employeedto) {
 		this.id = id;
 		this.name = employeedto.getName();
@@ -37,6 +41,10 @@ public class EmployeePayrollData {
 	
 	public void setSalary(double salary) {
 		this.salary = salary;
+	}
+	
+	public int getEmployeeId() {
+		return id;
 	}
 	
 }
